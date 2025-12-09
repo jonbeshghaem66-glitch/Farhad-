@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>یادبود سرباز شهید عبدالله برء</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15,23,42,0.96);
+      --panel-soft: rgba(15,23,42,0.98);
+      --accent: #facc15;
+      --accent-soft: rgba(250,204,21,0.14);
+      --accent-strong: rgba(250,204,21,0.8);
+      --border-soft: rgba(148,163,184,0.5);
+      --border-strong: rgba(250,204,21,0.9);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --radius-xl: 22px;
+      --shadow-soft: 0 28px 80px rgba(0,0,0,0.95);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 26px 10px;
+      color: var(--text);
+      background: radial-gradient(circle at top, #020617 0, #000 60%);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* پس‌زمینه متحرک */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56,189,248,0.22), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(22,163,74,0.28), transparent 55%),
+        radial-gradient(circle at 50% 120%, rgba(185,28,28,0.28), transparent 60%);
+      z-index: -2;
+      animation: bgMove 28s infinite alternate ease-in-out;
+      background-size: 140% 140%;
+      opacity: 0.75;
+    }
+
+    @keyframes bgMove {
+      0% { transform: translate3d(0,0,0); }
+      50% { transform: translate3d(0,-30px,0); }
+      100% { transform: translate3d(0,20px,0); }
+    }
+
+    /* نقاط نور */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    .dot {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(248,250,252,0.9);
+      box-shadow: 0 0 8px rgba(248,250,252,0.9);
+      animation: twinkle 3.5s infinite ease-in-out alternate;
+    }
+
+    .dot:nth-child(1) { top: 12%; right: 18%; animation-delay: 0.2s; }
+    .dot:nth-child(2) { top: 22%; left: 10%; animation-delay: 0.7s; }
+    .dot:nth-child(3) { top: 40%; right: 6%; animation-delay: 1.4s; }
+    .dot:nth-child(4) { bottom: 18%; left: 20%; animation-delay: 2s; }
+    .dot:nth-child(5) { bottom: 28%; right: 25%; animation-delay: 2.7s; }
+
+    @keyframes twinkle {
+      0% { opacity: 0.1; transform: scale(0.7); }
+      100% { opacity: 1; transform: scale(1.15); }
+    }
+
+    /* قاب اصلی */
+    .shell {
+      width: 100%;
+      max-width: 980px;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.99), rgba(15,23,42,1));
+      border-radius: 28px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 22px;
+      border: 1px solid rgba(250,204,21,0.35);
+      pointer-events: none;
+    }
+
+    /* هدر */
+    header {
+      padding: 14px 22px 10px;
+      background: rgba(2,6,23,0.98);
+      border-bottom: 1px solid rgba(148,163,184,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(250,204,21,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #fef9c3;
+      box-shadow: 0 0 14px rgba(250,204,21,0.7);
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .site-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-indent: 0.18em;
+      color: #f9fafb;
+    }
+
+    .site-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .basmala {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: #fef9c3;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    .basmala span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .basmala { letter-spacing: 0.12em; }
+    }
+
+    /* هرو */
+    .hero {
+      padding: 18px 24px 16px;
+      background:
+        radial-gradient(circle at top, rgba(248,250,252,0.04), transparent 65%),
+        radial-gradient(circle at bottom, rgba(22,163,74,0.18), transparent 55%);
+      border-bottom: 1px solid rgba(148,163,184,0.35);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.2fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    @media (max-width: 840px) {
+      .hero-grid { grid-template-columns: minmax(0,1fr); }
+    }
+
+    .hero-avatar-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-avatar {
+      position: relative;
+      width: 210px;
+      max-width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 30px;
+      padding: 4px;
+      background:
+        conic-gradient(
+          from 220deg,
+          rgba(250,204,21,0.85),
+          rgba(34,197,94,0.7),
+          rgba(59,130,246,0.85),
+          rgba(250,204,21,0.85)
+        );
+      box-shadow:
+        0 22px 60px rgba(0,0,0,0.96),
+        0 0 26px rgba(250,204,21,0.4);
+      animation: subtleRotate 30s linear infinite;
+    }
+
+    @keyframes subtleRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hero-avatar-inner {
+      border-radius: 24px;
+      overflow: hidden;
+      background: #020617;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-avatar-inner iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      filter: grayscale(0.1) contrast(1.05);
+    }
+
+    .hero-avatar-inner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 34px rgba(0,0,0,0.88);
+      pointer-events: none;
+    }
+
+    .hero-name {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-indent: 0.26em;
+      color: #f9fafb;
+      margin-bottom: 4px;
+    }
+
+    .hero-role {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-dates {
+      font-size: 13px;
+      color: #e5e7eb;
+      margin-bottom: 8px;
+    }
+
+    .hero-dates span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-quote {
+      font-size: 13px;
+      color: #e5e7eb;
+      line-height: 1.9;
+      margin-bottom: 10px;
+    }
+
+    .hero-quote span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      color: var(--muted);
+      background: rgba(2,6,23,0.96);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.98);
+      color: var(--muted);
+    }
+
+    /* نوار روزشمار */
+    .countdown-strip {
+      margin: 10px 18px 0;
+      padding: 10px 14px;
+      border-radius: 18px;
+      background: rgba(15,23,42,0.97);
+      border: 1px solid rgba(250,204,21,0.7);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .countdown-label {
+      color: #e5e7eb;
+    }
+
+    .countdown-value {
+      color: #facc15;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
+      .countdown-strip {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .countdown-value {
+        font-size: 12px;
+      }
+    }
+
+    /* نوار آیکونی */
+    .icon-strip {
+      padding: 8px 18px 10px;
+      background: rgba(15,23,42,0.98);
+      border-bottom: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .icon-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .icon-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    .icon-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: radial-gradient(circle at top, #020617, #020617);
+      cursor: pointer;
+      font-size: 11px;
+      color: var(--muted);
+      transition: background 0.18s, border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+    }
+
+    .icon-btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      color: #fefce8;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+      transform: translateY(-1px);
+    }
+
+    .icon-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(250,204,21,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      background: radial-gradient(circle, rgba(250,204,21,0.2), transparent 65%);
+    }
+
+    .icon-label-main {
+      font-size: 11px;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .icon-label-sub {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* بدنه + آکاردئون */
+    main {
+      padding: 16px 18px 18px;
+    }
+
+    @media (max-width: 720px) {
+      main { padding: 14px 10px 16px; }
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .panel {
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--panel), var(--panel-soft));
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.9);
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .panel.open {
+      border-color: var(--border-strong);
+      box-shadow: 0 24px 60px rgba(0,0,0,1);
+    }
+
+    .panel-header {
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .panel-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(250,204,21,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: radial-gradient(circle, rgba(250,204,21,0.2), transparent 65%);
+    }
+
+    .panel-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .panel-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .panel-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .panel-chevron {
+      font-size: 14px;
+      color: var(--muted);
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .panel.open .panel-chevron {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    .panel-body {
+      border-top: 1px solid rgba(148,163,184,0.45);
+      padding: 10px 12px 12px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .panel.open .panel-body {
+      max-height: 2000px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(to left, transparent, rgba(148,163,184,0.7), transparent);
+      margin: 4px 0 8px;
+    }
+
+    .text-block {
+      font-size: 13px;
+      line-height: 1.95;
+      color: #e5e7eb;
+      text-align: justify;
+      white-space: pre-line;
+    }
+
+    .meta-list {
+      list-style: none;
+      display: grid;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .meta-label {
+      color: #e5e7eb;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    .media-caption {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .audio-box,
+    .video-box {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: #020617;
+      margin-bottom: 8px;
+    }
+
+    .audio-box iframe {
+      width: 100%;
+      height: 80px;
+      border: 0;
+      display: block;
+    }
+
+    .video-box iframe {
+      width: 100%;
+      height: 220px;
+      border: 0;
+      display: block;
+    }
+
+    @media (max-width: 540px) {
+      .video-box iframe { height: 200px; }
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 880px) {
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    .photo {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: #020617;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.8);
+    }
+
+    .photo iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .placeholder {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .social-link {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.96);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      background: var(--accent-soft);
+    }
+
+    /* نوار نیت روزانه */
+    .niyat-strip {
+      margin: 12px 18px 0;
+      padding: 14px 14px 10px;
+      border-radius: 18px;
+      background: rgba(15,23,42,0.97);
+      border: 1px solid rgba(250,204,21,0.7);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.8);
+    }
+
+    .niyat-title {
+      font-size: 14px;
+      color: #facc15;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .niyat-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .niyat-options label {
+      cursor: pointer;
+    }
+
+    .niyat-thanks {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #bbf7d0;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    footer {
+      padding: 8px 20px 12px;
+      border-top: 1px solid rgba(148,163,184,0.4);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px;
+      background: rgba(2,6,23,0.98);
+    }
+
+    footer strong {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <!-- نقاط نور -->
+  <div class="particles">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <div class="shell">
+    <!-- هدر -->
+    <header>
+      <div class="header-main">
+        <div class="logo-mark">✨</div>
+        <div class="title-block">
+          <div class="site-title">یادبود شهید عبدالله برء</div>
+          <div class="site-sub">صفحه مجازی زیارت و دل‌نوشته برای سرباز شهید راه اسلام و میهن</div>
+        </div>
+      </div>
+      <div class="basmala">
+        <span>بِسْمِ رَبِّ الشُّهَدَاءِ وَالصِّدِّیقِین</span>
+      </div>
+    </header>
+
+    <!-- هرو -->
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-avatar-wrap">
+          <div class="hero-avatar">
+            <div class="hero-avatar-inner">
+              <iframe
+                src="https://drive.google.com/file/d/1OGeQamf-qHSBx0vnuZDaIy9yOQXSM-V_/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="hero-name">عبدالله برء</div>
+          <div class="hero-role">سرباز شهید راه اسلام و میهن</div>
+          <div class="hero-dates">
+            <span>اعزام:</span> ۱۵ / ۱۰ / ۱۳۶۰ &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span>شهادت:</span> ۲۲ / ۱۰ / ۱۳۶۱
+          </div>
+          <p class="hero-quote">
+            <span>«امروز روز حق است؛ سربازی امروز مثل زمان امام حسین (ع) می‌باشد.»</span><br>
+            او راه جبهه و شهادت را با آگاهی و اختیار انتخاب کرد؛ این صفحه برای آن است
+            که نام و یادش، همراه دل‌نوشته‌های زائران، زنده بماند.
+          </p>
+
+          <div class="hero-meta-row">
+            <div class="pill"><span class="meta-label">محل خدمت:</span> جزیره مینو، آبادان</div>
+            <div class="pill"><span class="meta-label">ویژگی:</span> مؤمن، ساده‌زیست، عاشق شهادت</div>
+          </div>
+
+          <div class="hero-tags">
+            <span class="tag">سرباز اسلام</span>
+            <span class="tag">فرزند رامهرمز</span>
+            <span class="tag">مدافع میهن</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- روزشمار سالگرد -->
+    <section class="countdown-strip" id="countdown">
+      <div class="countdown-label">
+        ⏳ تا سالگرد بعدی شهادت شهید عبدالله برء:
+      </div>
+      <div class="countdown-value">
+        <span id="countdownDays">...</span> روز باقی مانده
+      </div>
+    </section>
+
+    <!-- نوار آیکون‌ها -->
+    <section class="icon-strip">
+      <div class="icon-grid">
+        <button class="icon-btn" data-scroll="#feedback">
+          <div class="icon-circle">💡</div>
+          <div>
+            <div class="icon-label-main">پیشنهاد برای صفحه</div>
+            <div class="icon-label-sub">ایده‌ها و اصلاحات شما</div>
+          </div>
+        </button>
+        <button class="icon-btn" data-scroll="#will">
+          <div class="icon-circle">📜</div>
+          <div>
+            <div class="icon-label-main">وصیت‌نامه</div>
+            <div class="icon-label-sub">سخن آخر شهید</div>
+          </div>
+        </button>
+        <button class="icon-btn" data-scroll="#bio">
+          <div class="icon-circle">📖</div>
+          <div>
+            <div class="icon-label-main">زندگینامه</div>
+            <div class="icon-label-sub">از کودکی تا شهادت</div>
+          </div>
+        </button>
+        <button class="icon-btn" data-scroll="#audio-panel">
+          <div class="icon-circle">🎧</div>
+          <div>
+            <div class="icon-label-main">صوت</div>
+            <div class="icon-label-sub">وصیت‌نامه صوتی</div>
+          </div>
+        </button>
+        <button class="icon-btn" data-scroll="#notes">
+          <div class="icon-circle">💌</div>
+          <div>
+            <div class="icon-label-main">دل‌نوشته</div>
+            <div class="icon-label-sub">ثبت پیام زائران</div>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- آکاردئون -->
+    <main>
+      <div class="accordion">
+        <!-- صندوق پیشنهاد -->
+        <section class="panel" id="feedback">
+          <div class="panel-header">
+            <div class="panel-header-left">
+              <div class="panel-icon">💡</div>
+              <div class="panel-title-block">
+                <div class="panel-title">صندوق پیشنهاد برای صفحه</div>
+                <div c
